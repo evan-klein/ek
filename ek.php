@@ -20,4 +20,13 @@ function randStr($len=16, $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrst
 	return $rand_str;
 }
 
+
+// This function generates a random string, like randStr(), except that it excludes characters that look alike (i.e., I, i, L, l, 1, O, o, 0)
+function randPw($len=16){
+	return randStr(
+		$len,
+		'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789'
+	);
+}
+
 ?>
