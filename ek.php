@@ -36,12 +36,12 @@ function getNameServers($domain){
 	// Throw an exception if $domain is not a valid domain name
 
 	// Perform a whois lookup
-	$whois_lookup_results = shell_exec('whois ' . escapeshellarg($domain));
+	$whois_lookup_results = \shell_exec('whois ' . \escapeshellarg($domain));
 	// Throw an exception if it fails
 	if(!$whois_lookup_results) throw new \Exception("whois lookup for domain \"$domain\" failed", 500);
 
 	// Extract an array of name servers from the results
-	preg_match_all(
+	\preg_match_all(
 		"/Name Server: ([A-Z|a-z|0-9|\.|-]+)/",
 		$whois_lookup_results,
 		$matches
@@ -49,8 +49,8 @@ function getNameServers($domain){
 
 	// Process the extracted name servers
 	$name_servers = $matches[1] ?? [];
-	$name_servers = array_map('strtolower', $name_servers);
-	$name_servers = array_unique($name_servers);
+	$name_servers = \array_map('\strtolower', $name_servers);
+	$name_servers = \array_unique($name_servers);
 
 	return $name_servers;
 }
