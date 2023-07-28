@@ -93,6 +93,9 @@ function getMemInfo(): array {
 	// Default values
 	$mem_total = -1;
 	$mem_free = -1;
+	$mem_available = -1;
+	$swap_total = -1;
+	$swap_free = -1;
 
 	// Linux
 	if( \file_exists('/proc/meminfo') ){
@@ -102,10 +105,16 @@ function getMemInfo(): array {
 		// Extract total and free memory
 		\preg_match('/MemTotal:\s+(\d+)/', $meminfo, $match1);
 		\preg_match('/MemFree:\s+(\d+)/', $meminfo, $match2);
+		\preg_match('/MemAvailable:\s+(\d+)/', $meminfo, $match3);
+		\preg_match('/SwapTotal:\s+(\d+)/', $meminfo, $match4);
+		\preg_match('/SwapFree:\s+(\d+)/', $meminfo, $match5);
 
 		// Convert from KB to MB
 		if( isset($match1[1]) ) $mem_total = \round($match1[1]/1024);
 		if( isset($match2[1]) ) $mem_free = \round($match2[1]/1024);
+		if( isset($match3[1]) ) $mem_available = \round($match3[1]/1024);
+		if( isset($match4[1]) ) $swap_total = \round($match4[1]/1024);
+		if( isset($match5[1]) ) $swap_free = \round($match5[1]/1024);
 	}
 	// TODO
 	// macOS
@@ -116,7 +125,11 @@ function getMemInfo(): array {
 	return [
 		'mem_total'=>$mem_total,
 		'mem_free'=>$mem_free,
-		'mem_free_percent'=>\round(($mem_free/$mem_total), 2)
+		'mem_free_percent'=>\round(($mem_free/$mem_total), 2),
+		'mem_available'=>$mem_available,
+		'swap_total'=>$swap_total,
+		'swap_free'=>$swap_free,
+		'swap_free_percent'=>\round(($swap_free/$swap_total), 2)
 	];
 }
 
