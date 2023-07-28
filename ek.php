@@ -88,4 +88,36 @@ function getNumCPUs(): int {
 	else return 0;
 }
 
+
+function getMemInfo(): array {
+	// Default values
+	$mem_total = -1;
+	$mem_free = -1;
+
+	// Linux
+	if( \file_exists('/proc/meminfo') ){
+		// Read the meminfo file
+		$meminfo = \file_get_contents('/proc/meminfo');
+
+		// Extract total and free memory
+		\preg_match('/MemTotal:\s+(\d+)/', $, $match1);
+		\preg_match('/MemFree:\s+(\d+)/', $, $match2);
+
+		// Convert from KB to MB
+		if( isset($match1[1]) ) $mem_total = \round($match1/1024);
+		if( isset($match2[1]) ) $mem_free = \round($match2/1024);
+	}
+	// TODO
+	// macOS
+	// TODO
+	// Windows
+
+	// Return the result
+	return [
+		'mem_total'=>$mem_total,
+		'mem_free'=>$mem_free,
+		'mem_free_percent'=>\round(($mem_free/$mem_total), 2)
+	];
+}
+
 ?>
