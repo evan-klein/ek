@@ -74,4 +74,18 @@ function getNameServers($domain){
  __) |  __)  | |_ |  |
 */
 
+// This function returns the number of CPUs the system has, or 0 if it's unable to figure it out
+function getNumCPUs(){
+	if( \file_exists('/proc/cpuinfo') ){
+		\preg_match_all(
+			'/^processor/m',
+			\file_get_contents('/proc/cpuinfo'),
+			$matches
+		);
+
+		return \count($matches[0]);
+	}
+	else return 0;
+}
+
 ?>
