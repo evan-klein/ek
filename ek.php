@@ -127,6 +127,7 @@ function getMemInfo(): array {
 		'mem_free'=>(int) $mem_free,
 		'mem_free_ratio'=>\round(($mem_free/$mem_total), 2),
 		'mem_available'=>(int) $mem_available,
+		'mem_available_ratio'=>\round(($mem_available/$mem_total), 2),
 		'swap_total'=>(int) $swap_total,
 		'swap_free'=>(int) $swap_free,
 		'swap_free_ratio'=>\round(($swap_free/$swap_total), 2)
