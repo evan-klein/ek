@@ -9,7 +9,7 @@ namespace ek;
 */
 
 // This function generates a random string
-function randStr($len=16, $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'){
+function randStr($len=16, $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'): string {
 	$chars_len = \strlen($chars);
 
 	$rand_str = '';
@@ -28,7 +28,7 @@ function randStr($len=16, $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrst
 
 
 // This function generates a random string, like randStr(), except that it excludes characters that look alike (i.e., I, i, L, l, 1, O, o, 0)
-function randPw($len=16){
+function randPw($len=16): string {
 	return randStr(
 		$len,
 		'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789'
@@ -43,7 +43,7 @@ function randPw($len=16){
 */
 
 // This function returns an array of name servers for the domain specified
-function getNameServers($domain){
+function getNameServers($domain): array {
 	// TODO
 	// Throw an exception if $domain is not a valid domain name
 
@@ -75,7 +75,7 @@ function getNameServers($domain){
 */
 
 // This function returns the number of CPUs the system has, or 0 if it's unable to figure it out
-function getNumCPUs(){
+function getNumCPUs(): int {
 	if( \file_exists('/proc/cpuinfo') ){
 		\preg_match_all(
 			'/^processor/m',
