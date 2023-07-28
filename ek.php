@@ -2,6 +2,12 @@
 
 namespace ek;
 
+/*
+  __ ___ _  ___       __  __
+ (_   | |_)  |  |\ | /__ (_
+ __)  | | \ _|_ | \| \_| __)
+*/
+
 // This function generates a random string
 function randStr($len=16, $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'){
 	$chars_len = \strlen($chars);
@@ -30,6 +36,12 @@ function randPw($len=16){
 }
 
 
+/*
+  _        __
+ | \ |\ | (_ 
+ |_/ | \| __)
+*/
+
 // This function returns an array of name servers for the domain specified
 function getNameServers($domain){
 	// TODO
@@ -54,5 +66,12 @@ function getNameServers($domain){
 
 	return $name_servers;
 }
+
+
+/*
+  __     __ ___ _
+ (_ \_/ (_   | |_ |\/|
+ __) |  __)  | |_ |  |
+*/
 
 ?>
