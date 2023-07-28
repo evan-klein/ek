@@ -123,13 +123,13 @@ function getMemInfo(): array {
 
 	// Return the result
 	return [
-		'mem_total'=>$mem_total,
-		'mem_free'=>$mem_free,
-		'mem_free_percent'=>\round(($mem_free/$mem_total), 2),
-		'mem_available'=>$mem_available,
-		'swap_total'=>$swap_total,
-		'swap_free'=>$swap_free,
-		'swap_free_percent'=>\round(($swap_free/$swap_total), 2)
+		'mem_total'=>(int) $mem_total,
+		'mem_free'=>(int) $mem_free,
+		'mem_free_ratio'=>\round(($mem_free/$mem_total), 2),
+		'mem_available'=>(int) $mem_available,
+		'swap_total'=>(int) $swap_total,
+		'swap_free'=>(int) $swap_free,
+		'swap_free_ratio'=>\round(($swap_free/$swap_total), 2)
 	];
 }
 
