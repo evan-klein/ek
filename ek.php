@@ -100,12 +100,12 @@ function getMemInfo(): array {
 		$meminfo = \file_get_contents('/proc/meminfo');
 
 		// Extract total and free memory
-		\preg_match('/MemTotal:\s+(\d+)/', $, $match1);
-		\preg_match('/MemFree:\s+(\d+)/', $, $match2);
+		\preg_match('/MemTotal:\s+(\d+)/', $meminfo, $match1);
+		\preg_match('/MemFree:\s+(\d+)/', $meminfo, $match2);
 
 		// Convert from KB to MB
-		if( isset($match1[1]) ) $mem_total = \round($match1/1024);
-		if( isset($match2[1]) ) $mem_free = \round($match2/1024);
+		if( isset($match1[1]) ) $mem_total = \round($match1[1]/1024);
+		if( isset($match2[1]) ) $mem_free = \round($match2[1]/1024);
 	}
 	// TODO
 	// macOS
