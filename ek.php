@@ -3,9 +3,11 @@
 namespace ek;
 
 /*
+
   __ ___ _  ___       __  __
  (_   | |_)  |  |\ | /__ (_
  __)  | | \ _|_ | \| \_| __)
+
 */
 
 // This function generates a random string
@@ -37,9 +39,11 @@ function randPw($len=16): string {
 
 
 /*
+
   _        __
  | \ |\ | (_ 
  |_/ | \| __)
+
 */
 
 // This function returns an array of name servers for the domain specified
@@ -69,9 +73,11 @@ function getNameServers($domain): array {
 
 
 /*
+
   __     __ ___ _
  (_ \_/ (_   | |_ |\/|
  __) |  __)  | |_ |  |
+
 */
 
 // This function returns the number of CPUs the system has, or 0 if it's unable to figure it out
@@ -135,6 +141,20 @@ function getMemInfo(): array {
 }
 
 
+/*
+
+  _    ___
+ /  |   |
+ \_ |_ _|_
+
+*/
+
+/*
+This function returns an associative array of all of the command-line arguments passed to the PHP script in the following formats:
+--key=value
+--another_key='another value'
+--yet_another_key="yet another value"
+*/
 function getCommandLineArgs(): array {
 	$results = [];
 
