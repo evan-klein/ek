@@ -134,4 +134,21 @@ function getMemInfo(): array {
 	];
 }
 
+
+function getCommandLineArgs(): array {
+	$results = [];
+
+	foreach($GLOBALS['argv'] as $arg){
+		if(
+			\preg_match('/^--(\w+)=(.+)$/', $arg, $matches)
+		){
+			$key = $matches[1];
+			$value = $matches[2];
+			$results[$key] = $value;
+		}
+	}
+
+	return $results;
+}
+
 ?>
