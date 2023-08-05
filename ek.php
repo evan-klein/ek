@@ -108,7 +108,7 @@ function getMemInfo(): array {
 		// Read the meminfo file
 		$meminfo = \file_get_contents('/proc/meminfo');
 
-		// Extract total and free memory
+		// Extract data
 		\preg_match('/MemTotal:\s+(\d+)/', $meminfo, $match1);
 		\preg_match('/MemFree:\s+(\d+)/', $meminfo, $match2);
 		\preg_match('/MemAvailable:\s+(\d+)/', $meminfo, $match3);
