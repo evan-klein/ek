@@ -10,6 +10,26 @@ namespace ek;
 
 */
 
+function get($key, $default_val=''): string {
+	return $_GET[$key] ?? $default_val;
+}
+
+
+function post($key, $default_val=''): string {
+	return $_POST[$key] ?? $default_val;
+}
+
+
+function request($key, $default_val=''): string {
+	return $_REQUEST[$key] ?? $default_val;
+}
+
+
+function cookie($key, $default_val=''): string {
+	return $_COOKIE[$key] ?? $default_val;
+}
+
+
 function addNBSP($input): string {
 	return $input=='' ? '&nbsp;':$input;
 }
