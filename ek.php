@@ -213,6 +213,22 @@ function getMemInfo(): array {
 }
 
 
+// This function returns the amount of total disk space, in megabytes, on the filesystem or disk partition specified
+function getTotalDiskSpace($path='/'): int {
+	return \floor(
+		disk_total_space($path)/1048576
+	);
+}
+
+
+// This function returns the amount of free disk space, in megabytes, on the filesystem or disk partition specified
+function getFreeDiskSpace($path='/'): int {
+	return \floor(
+		disk_free_space($path)/1048576
+	);
+}
+
+
 /*
 
   _    ___
