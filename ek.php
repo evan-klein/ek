@@ -78,6 +78,25 @@ function randPw($len=16): string {
 
 /*
 
+    ___ ___ _
+ |_| |   | |_)
+ | | |   | |
+
+*/
+
+function redirect($url){
+	\header("Location: $url");
+	exit();
+}
+
+
+function isHTTPS(): bool {
+	return isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on';
+}
+
+
+/*
+
   _        __
  | \ |\ | (_ 
  |_/ | \| __)
