@@ -4,6 +4,24 @@ namespace ek;
 
 /*
 
+  _   _   _   _  _  __  __ ___       __
+ |_) |_) / \ /  |_ (_  (_   |  |\ | /__
+ |   | \ \_/ \_ |_ __) __) _|_ | \| \_|
+
+*/
+
+function addNBSP($input): string {
+	return $input=='' ? '&nbsp;':$input;
+}
+
+
+function removeNBSP($input): string {
+	return $input=='&nbsp;' ? '':$input;
+}
+
+
+/*
+
   __ ___ _  ___       __  __
  (_   | |_)  |  |\ | /__ (_
  __)  | | \ _|_ | \| \_| __)
