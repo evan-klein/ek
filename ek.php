@@ -95,6 +95,21 @@ function isHTTPS(): bool {
 }
 
 
+function forceHTTPS(){
+	// TODO
+}
+
+
+function sendJSONHeader(){
+	\header('content-type: application/json; charset=utf-8');
+}
+
+
+function sendXMLHeader(){
+	\header('content-type: text/xml');
+}
+
+
 /*
 
   _        __
