@@ -160,6 +160,12 @@ function getNameServers($domain): array {
 
 */
 
+// This function returns true if the shell command specified exists, or false otherwise. Do NOT use with user input
+function shellCommandExists($cmd): bool {
+	return is_string(`which $cmd`);
+}
+
+
 // This function returns the number of CPUs the system has, or 0 if it's unable to figure it out
 function getNumCPUs(): int {
 	if( \file_exists('/proc/cpuinfo') ){
