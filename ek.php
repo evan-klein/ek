@@ -184,6 +184,7 @@ function getNumCPUs(): int {
 }
 
 
+// This function returns an associative array containing system memory usage metrics
 function getMemInfo(): array {
 	// Default values
 	$mem_total = -1;
