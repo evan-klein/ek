@@ -1,3 +1,7 @@
 # ek
 
-TODO
+## Requirements
+
+### ek.php
+
+- PHP v8.0+
