@@ -40,6 +40,24 @@ function removeNBSP($input): string {
 }
 
 
+function htmlSafe($input, $input_encoding='UTF-8'): string {
+	return \htmlspecialchars(
+		$input,
+		ENT_QUOTES | ENT_HTML5 | ENT_SUBSTITUTE | ENT_DISALLOWED,
+		$input_encoding
+	);
+}
+
+
+function xmlSafe($input, $input_encoding='UTF-8'): string {
+	return \htmlspecialchars(
+		$input,
+		ENT_QUOTES | ENT_XML1 | ENT_SUBSTITUTE | ENT_DISALLOWED,
+		$input_encoding
+	);
+}
+
+
 // This function takes a string or an array, converts it to UTF-8, and returns the result. Requires PHP v8.0+ because of the union type used for the return type
 function convertToUTF8($input, $input_encoding='CP1252'): string|array {
 	// Attempt to convert the input to UTF-8
