@@ -40,6 +40,23 @@ function removeNBSP($input): string {
 }
 
 
+function convertToUTF8($input, $input_encoding='CP1252'): string|array {
+	$result = \mb_convert_encoding(
+		$input,
+		'UTF-8',
+		$input_encoding
+	);
+
+	if(
+		\is_bool($result)
+		&&
+		!$result
+	) throw new \Exception('Failed to convert to UTF-8', 500);
+
+	return $result;
+}
+
+
 /*
 
   __ ___ _  ___       __  __
