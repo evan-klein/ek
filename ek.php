@@ -1,6 +1,6 @@
 <?php
 
-namespace ek;
+namespace evan_klein\ek;
 
 /*
 
