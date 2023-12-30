@@ -207,7 +207,7 @@ function shellCommandExists($cmd): bool {
 
 // This function returns the number of CPUs the system has, or 0 if it's unable to figure it out
 function getNumCPUs(): int {
-	if( \ek\shellCommandExists('nproc') ){
+	if( shellCommandExists('nproc') ){
 		return (int) `nproc`;
 	}
 	else if( \file_exists('/proc/cpuinfo') ){
