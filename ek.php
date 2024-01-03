@@ -125,6 +125,19 @@ function randPw($len=16): string {
 
 /*
 
+             ___  _      ___ ___  _
+ \  / /\  |   |  | \  /\  |   |  / \ |\ |
+  \/ /--\ |_ _|_ |_/ /--\ |  _|_ \_/ | \|
+
+*/
+
+function isValidEmail($input): bool {
+	return \filter_var($input, FILTER_VALIDATE_EMAIL);
+}
+
+
+/*
+
     ___ ___ _
  |_| |   | |_)
  | | |   | |
