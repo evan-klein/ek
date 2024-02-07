@@ -123,6 +123,16 @@ function randPw($len=16): string {
 }
 
 
+function hashPw($pw): string {
+	return \password_hash($pw, PASSWORD_DEFAULT);
+}
+
+
+function pwMatches($pw, $hash): bool {
+	return \password_verify($pw, $hash);
+}
+
+
 /*
 
              ___  _      ___ ___  _
