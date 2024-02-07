@@ -125,6 +125,15 @@ function randPw($len=16): string {
 
 /*
 This function hashes the password provided using PHP's default hashing algorithm
+
+Note:
+- The hash returned will include the algorithm, cost, and salt used, as part of the hash, so even if PHP's default hashing algorithm changes in the future, \password_verify() and \evan_klein\ek\pwMatches() should still work
+
+- PHP's default hashing algorithm is currently bcrypt
+	- bcrypt truncates passwords to a maximum length of 72 characters
+	- bcrypt hashes are always 60 characters long
+
+- If PHP's default hashing algorithm does change, the length of the hashes returned by \password_hash() and \evan_klein\ek\hashPw() may change too. When using these two functions, it is recommended that you be prepared to work with hashes that are up to 255 characters long
 */
 function hashPw($pw): string {
 	return \password_hash($pw, PASSWORD_DEFAULT);
