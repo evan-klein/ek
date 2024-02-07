@@ -123,6 +123,9 @@ function randPw($len=16): string {
 }
 
 
+/*
+This function hashes the password provided using PHP's default hashing algorithm
+*/
 function hashPw($pw): string {
 	return \password_hash($pw, PASSWORD_DEFAULT);
 }
