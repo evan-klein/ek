@@ -30,6 +30,19 @@ function cookie($key, $default_val=''): string {
 }
 
 
+function extract($input, $var_name){
+	if( !\is_array($input) ){
+		return $input;
+	}
+
+	if( !\isset($input[$var_name]) ){
+		throw new \Exception("Index '$var_name' is undefined", 400);
+	}
+
+	return $input[$var_name];
+}
+
+
 function addNBSP($input): string {
 	return $input=='' ? '&nbsp;':$input;
 }
