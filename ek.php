@@ -364,4 +364,20 @@ function getCommandLineArgs(): array {
 	return $results;
 }
 
+
+function getStdin($trim=false, $lowercase=false, $uppercase=false): string {
+	$stdin = \fgets(STDIN);
+
+	if($stdin===false){
+		throw new \Exception('An error occurred while attempting to read from stdin', 500);
+	}
+
+	// Processing
+	if($trim) $stdin = \trim($stdin);
+	if($lowercase) $stdin = \strtolower($stdin);
+	if($uppercase) $stdin = \strtoupper($stdin);
+
+	return $stdin;
+}
+
 ?>
