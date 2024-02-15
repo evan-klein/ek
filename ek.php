@@ -186,12 +186,7 @@ function redirect($url){
 
 
 function isHTTPS(): bool {
-	return isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on';
-}
-
-
-function forceHTTPS(){
-	$IsHTTPS = (
+	return (
 		(
 			\isset($_SERVER['HTTPS'])
 			&&
@@ -206,8 +201,11 @@ function forceHTTPS(){
 			$_SERVER['HTTP_X_FORWARDED_PROTO']=='https'
 		)
 	);
+}
 
-	if(!$IsHTTPS) redirect('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+
+function forceHTTPS(){
+	if( !isHTTPS() ) redirect('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 }
 
 
