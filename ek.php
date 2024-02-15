@@ -191,7 +191,23 @@ function isHTTPS(): bool {
 
 
 function forceHTTPS(){
-	// TODO
+	$IsHTTPS = (
+		(
+			\isset($_SERVER['HTTPS'])
+			&&
+			!\empty($_SERVER['HTTPS'])
+			&&
+			$_SERVER['HTTPS']!=='off'
+		)
+		||
+		(
+			\isset($_SERVER['HTTP_X_FORWARDED_PROTO'])
+			&&
+			$_SERVER['HTTP_X_FORWARDED_PROTO']=='https'
+		)
+	);
+
+	if(!$IsHTTPS) redirect('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 }
 
 
