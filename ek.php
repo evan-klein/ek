@@ -179,8 +179,8 @@ function isValidEmail($input): bool {
 
 */
 
-function redirect($url){
-	\header("Location: $url");
+function redirect($url, $status_code=301){
+	\header("Location: $url", true, $status_code);
 	exit();
 }
 
