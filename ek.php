@@ -237,6 +237,14 @@ function sendXMLHeader(){
 
 */
 
+// This function converts a Unicode domain name to an IDNA ASCII-compatible format, which is useful when working with domain names that contain non-ASCII characters
+function domainToASCII(string $domain): string {
+	$domain_ascii = \idn_to_ascii($domain);
+	if($domain_ascii===false) throw new \Exception("idn_to_ascii($domain) failed", 400);
+	return $domain_ascii;
+}
+
+
 // This function returns an array of name servers for the domain specified
 function getNameServers($domain): array {
 	// TODO
@@ -264,13 +272,7 @@ function getNameServers($domain): array {
 
 
 function domainHasRecords($domain, $type): bool {
-	// Convert Unicode domain name to an IDNA ASCII-compatible format
-	$domain = \idn_to_ascii($domain);
-
-	// Throw an exception if it failed
-	if($domain===false) throw new \Exception('idn_to_ascii() failed', 400);
-
-	// Check for records
+	$domain = domainToASCII($domain);
 	return \checkdnsrr($domain, $type);
 }
 
