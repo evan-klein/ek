@@ -263,6 +263,18 @@ function getNameServers($domain): array {
 }
 
 
+function domainHasRecords($domain, $type): bool {
+	// Convert Unicode domain name to an IDNA ASCII-compatible format
+	$domain = \idn_to_ascii($domain);
+
+	// Throw an exception if it failed
+	if($domain===false) throw new \Exception('idn_to_ascii() failed', 400);
+
+	// Check for records
+	return \checkdnsrr($domain, $type);
+}
+
+
 /*
 
   __     __ ___ _
