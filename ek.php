@@ -250,7 +250,7 @@ function getNameServers($domain): array {
 	// TODO
 	// Throw an exception if $domain is not a valid domain name
 
-	// Converts Unicode domain name to an IDNA ASCII-compatible format
+	// Convert domain name to an IDNA ASCII-compatible format
 	$domain = domainToASCII($domain);
 
 	// Perform a whois lookup
