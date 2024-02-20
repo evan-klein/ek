@@ -250,6 +250,9 @@ function getNameServers($domain): array {
 	// TODO
 	// Throw an exception if $domain is not a valid domain name
 
+	// Converts Unicode domain name to an IDNA ASCII-compatible format
+	$domain = domainToASCII($domain);
+
 	// Perform a whois lookup
 	$whois_lookup_results = \shell_exec('whois ' . \escapeshellarg($domain));
 	// Throw an exception if it fails
