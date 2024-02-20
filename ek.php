@@ -30,7 +30,7 @@ function cookie($key, $default_val=''): string {
 }
 
 
-function extract($input, $var_name){
+function extract($input, string $var_name){
 	if( !\is_array($input) ){
 		return $input;
 	}
@@ -53,7 +53,7 @@ function removeNBSP($input): string {
 }
 
 
-function htmlSafe($input, $input_encoding='UTF-8'): string {
+function htmlSafe($input, string $input_encoding='UTF-8'): string {
 	return \htmlspecialchars(
 		$input,
 		ENT_QUOTES | ENT_HTML5 | ENT_SUBSTITUTE | ENT_DISALLOWED,
@@ -62,7 +62,7 @@ function htmlSafe($input, $input_encoding='UTF-8'): string {
 }
 
 
-function xmlSafe($input, $input_encoding='UTF-8'): string {
+function xmlSafe($input, string $input_encoding='UTF-8'): string {
 	return \htmlspecialchars(
 		$input,
 		ENT_QUOTES | ENT_XML1 | ENT_SUBSTITUTE | ENT_DISALLOWED,
@@ -72,7 +72,7 @@ function xmlSafe($input, $input_encoding='UTF-8'): string {
 
 
 // This function takes a string or an array, converts it to UTF-8, and returns the result. Requires PHP v8.0+ because of the union type used for the return type
-function convertToUTF8($input, $input_encoding='CP1252'): string|array {
+function convertToUTF8($input, string $input_encoding='CP1252'): string|array {
 	// Attempt to convert the input to UTF-8
 	$result = \mb_convert_encoding(
 		$input,
@@ -92,12 +92,12 @@ function convertToUTF8($input, $input_encoding='CP1252'): string|array {
 }
 
 
-function parseJSON($json, $associative=true, $depth=512, $flags=JSON_THROW_ON_ERROR){
+function parseJSON(string $json, bool $associative=true, int $depth=512, $flags=JSON_THROW_ON_ERROR){
 	return \json_decode($json, $associative, $depth, $flags);
 }
 
 
-function convertToJSON($input, $flags=JSON_THROW_ON_ERROR, $depth=512): string {
+function convertToJSON($input, $flags=JSON_THROW_ON_ERROR, int $depth=512): string {
 	return \json_encode($input, $flags, $depth);
 }
 
@@ -111,7 +111,7 @@ function convertToJSON($input, $flags=JSON_THROW_ON_ERROR, $depth=512): string {
 */
 
 // This function generates a random string
-function randStr($len=16, $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'): string {
+function randStr(int $len=16, string $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'): string {
 	$chars_len = \strlen($chars);
 
 	$rand_str = '';
@@ -138,7 +138,7 @@ function randStr($len=16, $chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrst
 */
 
 // This function generates a random string, like randStr(), except that it excludes characters that look alike (i.e., I, i, L, l, 1, O, o, 0)
-function randPw($len=16): string {
+function randPw(int $len=16): string {
 	return randStr(
 		$len,
 		'ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789'
@@ -158,12 +158,12 @@ Note:
 
 - If PHP's default hashing algorithm does change, the length of the hashes returned by \password_hash() and \evan_klein\ek\hashPw() may change too. When using these two functions, it is recommended that you be prepared to work with hashes that are up to 255 characters long
 */
-function hashPw($pw): string {
+function hashPw(string $pw): string {
 	return \password_hash($pw, PASSWORD_DEFAULT);
 }
 
 
-function pwMatches($pw, $hash): bool {
+function pwMatches(string $pw, string $hash): bool {
 	return \password_verify($pw, $hash);
 }
 
@@ -176,7 +176,7 @@ function pwMatches($pw, $hash): bool {
 
 */
 
-function isValidEmail($input): bool {
+function isValidEmail(string $input): bool {
 	return \filter_var($input, FILTER_VALIDATE_EMAIL);
 }
 
@@ -189,7 +189,7 @@ function isValidEmail($input): bool {
 
 */
 
-function redirect($url, $status_code=301){
+function redirect(string $url, int $status_code=301){
 	\header("Location: $url", true, $status_code);
 	exit();
 }
@@ -246,7 +246,7 @@ function domainToASCII(string $domain): string {
 
 
 // This function returns an array of name servers for the domain specified
-function getNameServers($domain): array {
+function getNameServers(string $domain): array {
 	// TODO
 	// Throw an exception if $domain is not a valid domain name
 
@@ -274,18 +274,18 @@ function getNameServers($domain): array {
 }
 
 
-function domainHasRecords($domain, $type): bool {
+function domainHasRecords(string $domain, string $type): bool {
 	$domain = domainToASCII($domain);
 	return \checkdnsrr($domain, $type);
 }
 
 
-function domainHasMXRecords($domain): bool {
+function domainHasMXRecords(string $domain): bool {
 	return domainHasRecords($domain, 'MX');
 }
 
 
-function throwIfDomainHasNoMXRecords($domain){
+function throwIfDomainHasNoMXRecords(string $domain){
 	if( !domainHasMXRecords($domain) ) throw new \Exception("Domain '$domain' does not have any MX records", 404);
 }
 
@@ -299,7 +299,7 @@ function throwIfDomainHasNoMXRecords($domain){
 */
 
 // This function returns true if the shell command specified exists, or false otherwise. Do NOT use with user input
-function shellCommandExists($cmd): bool {
+function shellCommandExists(string $cmd): bool {
 	return is_string(`which $cmd`);
 }
 
@@ -370,7 +370,7 @@ function getMemInfo(): array {
 
 
 // This function returns the amount of total disk space, in megabytes, on the filesystem or disk partition specified
-function getTotalDiskSpace($path='/'): int {
+function getTotalDiskSpace(string $path='/'): int {
 	return \floor(
 		disk_total_space($path)/1048576
 	);
@@ -378,7 +378,7 @@ function getTotalDiskSpace($path='/'): int {
 
 
 // This function returns the amount of free disk space, in megabytes, on the filesystem or disk partition specified
-function getFreeDiskSpace($path='/'): int {
+function getFreeDiskSpace(string $path='/'): int {
 	return \floor(
 		disk_free_space($path)/1048576
 	);
@@ -416,7 +416,7 @@ function getCommandLineArgs(): array {
 }
 
 
-function getStdin($trim=false, $lowercase=false, $uppercase=false): string {
+function getStdin(bool $trim=false, bool $lowercase=false, bool $uppercase=false): string {
 	$stdin = \fgets(STDIN);
 
 	if($stdin===false){
