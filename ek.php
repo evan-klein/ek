@@ -92,6 +92,16 @@ function convertToUTF8($input, $input_encoding='CP1252'): string|array {
 }
 
 
+function parseJSON($json, $associative=true, $depth=512, $flags=JSON_THROW_ON_ERROR){
+	return \json_decode($json, $associative, $depth, $flags);
+}
+
+
+function convertToJSON($input, $flags=JSON_THROW_ON_ERROR, $depth=512): string {
+	return \json_encode($input, $flags, $depth);
+}
+
+
 /*
 
   __ ___ _  ___       __  __
