@@ -275,6 +275,16 @@ function domainHasRecords($domain, $type): bool {
 }
 
 
+function domainHasMXRecords($domain): bool {
+	return domainHasRecords($domain, 'MX');
+}
+
+
+function throwIfDomainHasNoMXRecords($domain){
+	if( !domainHasMXRecords($domain) ) throw new \Exception("Domain '$domain' does not have any MX records", 404);
+}
+
+
 /*
 
   __     __ ___ _
