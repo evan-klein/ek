@@ -43,6 +43,33 @@ function extract($input, string $var_name){
 }
 
 
+function strToBool($input, string $var_name): bool {
+	$input_lowercase = \strtolower($input);
+
+	$map = [
+		'true' => true,
+		't' => true,
+		'yes' => true,
+		'y' => true,
+		'1' => true,
+		'false' => false,
+		'f' => false,
+		'no' => false,
+		'n' => false,
+		'0' => false
+	];
+
+	if( !\isset($map[$input_lowercase]) ){
+		$possible_vals = \implode(
+			', ',
+			\array_keys($map)
+		);
+		throw new \Exception("Invalid value of '$input' for '$var_name'. Possible values: $possible_vals", 400);
+	}
+	else return $map[$input_lowercase];
+}
+
+
 function addNBSP($input): string {
 	return $input=='' ? '&nbsp;':$input;
 }
