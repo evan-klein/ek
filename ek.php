@@ -89,6 +89,33 @@ function replaceWeirdChars(string $input): string {
 }
 
 
+function replaceSmartQuotes(string $input): string {
+	return \str_replace(
+		['“', '”', '‘', '’'],
+		['"', '"', "'", "'"],
+		$input
+	);
+}
+
+
+function replaceLongDashes(string $input): string {
+	return \str_replace(
+		['—'],
+		['--'],
+		$input
+	);
+}
+
+
+function replaceEllipses(string $input): string {
+	return \str_replace(
+		['…'],
+		['...'],
+		$input
+	);
+}
+
+
 function htmlSafe($input, string $input_encoding='UTF-8'): string {
 	return \htmlspecialchars(
 		$input,
