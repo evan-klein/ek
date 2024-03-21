@@ -80,6 +80,15 @@ function removeNBSP($input): string {
 }
 
 
+function replaceWeirdChars(string $input): string {
+	return \str_replace(
+		['“', '”', '‘', '’', '…', '—'],
+		['"', '"', "'", "'", '...', '--'],
+		$input
+	);
+}
+
+
 function htmlSafe($input, string $input_encoding='UTF-8'): string {
 	return \htmlspecialchars(
 		$input,
