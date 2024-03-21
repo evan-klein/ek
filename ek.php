@@ -116,6 +116,21 @@ function replaceEllipses(string $input): string {
 }
 
 
+function replaceNTimes($find, $replace, $input, int $limit){
+	return \preg_replace(
+		'/' . \preg_quote($find, '/') . '/',
+		$replace,
+		$input,
+		$limit
+	);
+}
+
+
+function replaceOnce($find, $replace, $input){
+	return replaceNTimes($find, $replace, $input, 1);
+}
+
+
 function htmlSafe($input, string $input_encoding='UTF-8'): string {
 	return \htmlspecialchars(
 		$input,
